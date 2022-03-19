@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i');
+
+.content-editor { font-family: 'Lato', sans-serif; font-size: 14px; font-weight: 100; color: #7B7777; display: flex; flex-direction: column; }
+.content-editor a { color: #FF7804; text-decoration: none; }
+.content-editor p { font-size: 18px; line-height: 160%; margin-top: 20px; }
+.content-editor ul.list-benefits { margin: 25px 0; }
+.content-editor ul.list-benefits li { width: 100%; display: block; padding: 0 0 0 45px; position: relative; min-height: 40px; display: flex; align-items: center; }
+.content-editor ul.list-benefits li img { display: block; position: absolute; top: 5px; left: 0; width: 30px; }
+.content-editor ul.list-benefits li span { font-size: 16px; line-height: 130%; }
+.content-video { margin: 30px 0; }
+.content-video h3, h4 { font-weight: 700; color: #7B7777; line-height: 110%; margin-top: 15px; }
+.content-video h3 { font-size: 36px; }
+.content-video h4 { font-size: 26px; }
+.content-video span.small { font-size: 16px; line-height: 100%; background-color: #EEEEEE; padding: 10px; display: block; width: 100%; }
+.content-video img.content-image { margin: 30px auto 0; }
+.content-video a.button { display: flex; align-items: center; align-self: flex-start; width: auto; height: 50px; border: solid 1px #EE7813; margin-top: 30px; padding: 0 15px; font-weight: 700; font-size: 18px; color: #EE7813; text-transform: uppercase; @include transition(all, 0.3s, ease); }
+.content-video a.button svg { width: 15px; margin-left: 9px; margin-top: 4px; }
+.content-video a.button svg circle, .content-video a.button svg path { @include transition(all, 0.3s, ease); }
+
+.content-editor a.button:hover { color: #FFF; background-color: #EE7813; }
+.content-editor a.button:hover svg circle, .content-editor a.button:hover svg path { fill: #FFF; }

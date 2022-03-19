@@ -1,0 +1,102 @@
+ul li { list-style: none; }
+.select-multiple { border: 1px solid #000; width: 250px; }
+.delete_button { float: right; }
+
+.table-responsive table tr td:first-child {
+	width: 15em;
+	text-align: right;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.table-responsive table tr td:last-child {
+	color: grey;
+	font-size: 12px;
+	padding: 5px;
+}
+
+.table-responsive table tr {
+	margin-bottom: 5px;
+}
+
+.table-responsive h2 {
+	margin: 25px 0 10px 0;
+}
+
+ul.pagination {
+	float: right;
+	display: inline-block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.pagination li
+{
+	list-style: none;
+	font-size: 13px;
+	letter-spacing: 0.2px;
+	float: left !important;
+}
+
+.pagination li:first-child a
+{
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.pagination li a, .pagination li span
+{
+	padding: 9px 12px;
+	position: relative;
+	text-decoration: none;
+	border: 1px solid #eeeeee;
+	line-height: 1;
+	font-size: 13px;
+	float: left;
+}
+
+.pagination li.disabled
+{
+	color: #dddddd;
+	cursor: not-allowed;
+}
+
+.pagination li.active span
+{
+	background-color: #1d937b;
+	border-color: #1d937b;
+	color: #fff;
+}
+
+.pagination li a, span { border: none; }
+
+.ls-alert-info { margin-top: 30px; }
+
+.ls-tabs-nav { margin-bottom: 20px; }
+
+.product_container fieldset .ls-label { padding: 0; }
+
+#editor_content_container { margin-top: 20px; border: solid 2px #e7e7e7; }
+
+.ui-sortable { cursor:move; }
+
+.st-block-addition hr { margin: 0; }
+
+.ls-table thead tr th:last-child { width: 50px !important; }
+
+.ls-login-box { width: 420px !important; }
+
+.newsletters-count { color: white; line-height: 17px; display: flex; align-items: center; justify-content: center;}
+.newsletters-count span { min-height: 26px; min-width: 26px; padding: 0 5px; border-radius: 50%; background-color: red; line-height: 20px; text-align: center; display: flex; justify-content: center; align-items: center; }
+
+.expired td { background-color: #ffdbdb !important; }
+.expired:nth-child(even) td { background-color: #ffe2e2 !important; }
+.expired:hover td { background-color: #ffecec !important; }
+
+.banner-list strong { color: white !important; background-color: #00B164; padding: 3px; }
+
+.link-field { display: flex; }
+.link-field input { vertical-align: center; align-items: center; max-height: 33px !important; margin-right: 10px; }
+.link-field div { max-width: 170px !important; }

@@ -1,0 +1,32 @@
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
+<IfModule mod_deflate.c>
+    <filesMatch "\.(js|css|html|php)$">
+        SetOutputFilter DEFLATE
+    </filesMatch>
+</IfModule>
+
+<ifmodule mod_expires.c>
+    <Filesmatch "\.(jpg|jpeg|png|gif|js|css|swf|ico|woff|mp3|svg|woff2)$">
+        ExpiresActive on
+        ExpiresDefault "access plus 10 days"
+    </Filesmatch>
+</ifmodule>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

@@ -1,0 +1,56 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.1.*",
+        "laravelcollective/html": "~5.0",
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "codesleeve/laravel-stapler": "1.0.*",
+        "sofa/eloquence": "~5.1@dev",
+        "kyslik/column-sortable": "~3.0.0",
+        "heroicpixels/filterable": "dev-master",
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "nesbot/carbon": "~1.14",
+        "chumper/zipper": "0.6.x",
+        "davibennun/laravel-push-notification": "dev-laravel5",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "watson/active": "^2.0",
+        "doctrine/dbal": "^2.5",
+        "cviebrock/eloquent-sluggable": "^4.0",
+        "barryvdh/laravel-cors": "^0.9.2",
+        "intervention/image": "^2.4",
+        "erusev/parsedown": "^1.7"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "~2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Helper\\": "app/Helpers"
+        },
+        "files": [
+            "app/Helper/Helper.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
