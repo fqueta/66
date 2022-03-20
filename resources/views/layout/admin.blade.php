@@ -106,9 +106,9 @@
 										{!!link_to_route('admin.biddings.index', 'Processos', [], ['class' => 'ls-submenu-item', 'role' => 'menuitem'])!!}
 									</li>
 								@endif
-								@if(in_array('biddings', Auth::user()->permissions()->lists('route')->toArray()))
+								@if(in_array('b_trimestrals', Auth::user()->permissions()->lists('route')->toArray()))
 									<li>
-										{!!link_to_route('admin.biddings.index', 'Publicações Trimestrais', [], ['class' => 'ls-submenu-item', 'role' => 'menuitem'])!!}
+										{!!link_to_route('admin.b_trimestrals.index', 'Publicações Trimestrais', [], ['class' => 'ls-submenu-item', 'role' => 'menuitem'])!!}
 									</li>
 								@endif
 								@if(in_array('bidding_categories', Auth::user()->permissions()->lists('route')->toArray()))

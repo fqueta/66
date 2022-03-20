@@ -27,6 +27,7 @@ class UsersController extends AdminController
         // ['name' => "attachments", "displayName" => "Anexos"],
         // Licitações
         ['name' => "biddings", "displayName" => "Processos"], 
+        ['name' => "b_trimestrals", "displayName" => "Processos Trimestrais"], 
         ['name' => "bidding_categories", "displayName" => "Áreas"], 
         ['name' => "newsletters", "displayName" => "Recebimento de notificações"], 
         // Fale conosco
@@ -46,7 +47,6 @@ class UsersController extends AdminController
     public function index()
     {
         $this->saveSession(Input::all());
-
         $users = User::where('name', 'LIKE', '%'.Session::get("filter_users_name").'%')
             ->where('email', 'LIKE', '%'.Session::get("filter_users_email").'%')
             ->orderBy('name', 'ASC')

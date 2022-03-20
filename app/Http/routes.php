@@ -16,13 +16,21 @@
         Route::resource('/receivers', 'ReceiversController', ['except' => ['show']]);
         Route::resource('/contacts', 'ContactsController', ['except' => ['show']]);
         Route::resource('/sections', 'SectionsController', ['except' => ['show']]);
+        
         Route::resource('/biddings', 'BiddingsController', ['except' => ['show']]);
         Route::resource('/attachments', 'AttachmentsController', ['except' => ['show']]);
-        // Route::resource('/biddings/order', 'BiddingsController@postSort');
         Route::resource('biddings.attachments', 'AttachmentsController', ['except' => ['show']]);
         Route::resource('biddings.notifications', 'NotificationsController', ['except' => ['show']]);
         Route::resource('biddings.newsletters', 'BiddingNewslettersController', ['except' => ['show']]);
         Route::resource('/biddings/{parent_id}/attachments/order', 'AttachmentsController@postSort');
+        
+        Route::resource('/b_trimestrals', 'B_trimestralsController', ['except' => ['show']]);
+        Route::resource('/attachments', 'AttachmentsController', ['except' => ['show']]);
+        Route::resource('b_trimestrals.attachments', 'AttachmentsController', ['except' => ['show']]);
+        Route::resource('b_trimestrals.notifications', 'NotificationsController', ['except' => ['show']]);
+        Route::resource('b_trimestrals.newsletters', 'BiddingNewslettersController', ['except' => ['show']]);
+        Route::resource('/b_trimestrals/{parent_id}/attachments/order', 'AttachmentsController@postSort');
+        
         Route::resource('/file_uploads', 'UploadsController', ['only' => ['index', 'create', 'store', 'show', 'destroy']]);
         Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
         Route::resource('/categories/order', 'CategoriesController@postSort');

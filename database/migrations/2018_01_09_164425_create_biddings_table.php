@@ -21,6 +21,10 @@ class CreateBiddingsTable extends Migration
             $table->string('opening', 255);
             $table->string('indentifier', 255);
             $table->string('object', 255);
+            $table->string('active', 1);
+            $table->integer('order');
+            $table->integer('type_id');
+            $table->integer('bidding_category_id');
             $table->timestamps();
         });
     }
