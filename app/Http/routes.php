@@ -25,11 +25,11 @@
         Route::resource('/biddings/{parent_id}/attachments/order', 'AttachmentsController@postSort');
         
         Route::resource('/b_trimestrals', 'B_trimestralsController', ['except' => ['show']]);
-        Route::resource('/attachments', 'AttachmentsController', ['except' => ['show']]);
-        Route::resource('b_trimestrals.attachments', 'AttachmentsController', ['except' => ['show']]);
+        Route::resource('/attachments', 'A_trimestralsController', ['except' => ['show']]);
+        Route::resource('b_trimestrals.attachments', 'A_trimestralsController', ['except' => ['show']]);
         Route::resource('b_trimestrals.notifications', 'NotificationsController', ['except' => ['show']]);
         Route::resource('b_trimestrals.newsletters', 'BiddingNewslettersController', ['except' => ['show']]);
-        Route::resource('/b_trimestrals/{parent_id}/attachments/order', 'AttachmentsController@postSort');
+        Route::resource('/b_trimestrals/{parent_id}/attachments/order', 'A_trimestralsController@postSort');
         
         Route::resource('/file_uploads', 'UploadsController', ['only' => ['index', 'create', 'store', 'show', 'destroy']]);
         Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);

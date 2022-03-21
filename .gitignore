@@ -20,4 +20,3 @@ phpspec.yml
 /tests
 /resources/views/vendor
 /resources/views/errors
-/resources/views/elements/
