@@ -35,7 +35,7 @@
     @include('elements.admin.shared.results', ['count' => count($attachments)])
 
     @if (count($attachments) > 0)
-      <small><b>Arraste os itens da listagem abaixo para alterar a ordenação</b></small>
+      <!--<small><b>Arraste os itens da listagem abaixo para alterar a ordenação</b></small>-->
       <table class="ls-table ls-table-striped ls-no-hover ls-bg-header">
         <thead>
           <tr>
@@ -48,7 +48,7 @@
         @foreach($attachments as $attachment)
             <tr id="featured_enterprises_{!! $attachment->id !!}">
               <td>{!!$attachment->title!!}</a></td>
-              <td><a href="#" target="_blank">Clique aqui para baixar</a></td>
+              <td><a href="/uploads/atrimestrals/{{ $attachment->btrimestral_id }}/{{ $attachment->file_name }}" target="_blank">Clique aqui para baixar</a></td>
               <td class="ls-txt-right ls-regroup">
                 <div class="ls-dropdown ls-pos-right" data-ls-module="dropdown">
                   <a class="ls-btn ls-btn-sm" href="#" aria-expanded="false" role="combobox"></a>

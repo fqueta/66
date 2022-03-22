@@ -51,6 +51,7 @@
         Route::resource('/banners', 'BannersController', ['only' => ['index']]);
         Route::resource('/floaters', 'FloatersController', ['only' => ['index']]);
         Route::resource('/biddings', 'BiddingsController', ['only' => ['index']]);
+        Route::resource('/btrimestrals', 'BtrimestralsController', ['only' => ['index']]);
         Route::resource('/sections', 'SectionsController', ['only' => ['index']]);
         Route::resource('/newsletters', 'NewslettersController', ['only' => ['store']]);
         Route::resource('/contacts', 'ContactsController', ['only' => ['store']]);

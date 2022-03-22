@@ -13,7 +13,6 @@ class AttachmentsController extends Controller
 	public function index($parent_id)
 	{
 		if ($parent = Bidding::find($parent_id)) {
-			dd($parent->attachments);
 			return view('admin.attachments.index', [
 				'parent_page' => $parent,
 				'attachments' => $parent->attachments,

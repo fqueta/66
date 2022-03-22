@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
-
+//use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests;
 use App\Http\Requests\AtrimestralsRequest;
 use App\Http\Controllers\Controller;
@@ -11,9 +12,15 @@ use App\Atrimestral;
 use App\Btrimestral;
 
 
+
 class A_trimestralsController extends Controller
 {
-    public function index($parent_id)
+    public $path;
+	public function __construct()
+	{
+		$this->path = public_path().'/uploads/atrimestrals/';
+	}
+	public function index($parent_id)
 	{
 		if ($parent = Btrimestral::find($parent_id)) {
 			return view('admin.a_trimestrals.index', [
@@ -42,37 +49,38 @@ class A_trimestralsController extends Controller
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
         // Get just ext
         $extension = $file->getClientOriginalExtension();
+        $mimeType = $extension;
         // Filename to store
         //$fileNameToStore= $filename.'_'.time().'.'.$extension;
         $fileNameToStore= $filename.'.'.$extension;
         // Upload Image
-        //dd($extension);
         //if($extension=='jpg' || $extension=='jpeg' || $extension=='png' || $extension=='zip' || $extension=='pdf' || $extension=='PDF'){
-            $dados = $request->all();
-            $token_produto = $dados['btrimestral_id'];
-            //$ultimoValor = _upload::where('token_produto','=',$token_produto)->max('ordem');
-            //$ordem = $ultimoValor ? $ultimoValor : 0;
-            //$ordem++;
-            $pasta = isset($dados['pasta'])?$dados['pasta']:base_path().'/uploads/atrimestrals/'.$token_produto;
+			$dados = $request->all();
+            $btrimestral_id = $dados['btrimestral_id'];
+            $ultimoValor = Atrimestral::where('btrimestral_id','=',$btrimestral_id)->max('order');
+            $order = $ultimoValor ? $ultimoValor : 0;
+            $order++;
+            $pasta = isset($dados['pasta'])?$dados['pasta']:$this->path.$btrimestral_id;
             $nomeArquivoSavo = $file->move($pasta,$fileNameToStore);
-			dd($nomeArquivoSavo);
-            $exec = false;
+			$exec = false;
             $salvar = false;
-            /*
-			if($nomeArquivoSavo){
-                $exec = true;
-                $salvar = _upload::create([
-                    'token_produto'=>$token_produto,
-                    'pasta'=>$nomeArquivoSavo,
-                    'ordem'=>$ordem,
-                    'nome'=>$filenameWithExt,
-                    'config'=>json_encode(['extenssao'=>$extension])
+            if($nomeArquivoSavo){
+				$exec = true;
+                $salvar = Atrimestral::create([
+                    'title'=>$dados['title'],
+                    'file_content_type'=>$mimeType,
+                    'btrimestral_id'=>$btrimestral_id,
+                    'file_file_name'=>$fileNameToStore,
+                    'order'=>$order,
                 ]);
-            }*/
-            //$lista = _upload::where('token_produto','=',$token_produto)->get();
+			}
+            //$lista = _upload::where('btrimestral_id','=',$btrimestral_id)->get();
             if($salvar){
-                return response()->json(['Arquivo enviado com sucesso'=>200]);
-            }
+                //return response()->json(['Arquivo enviado com sucesso'=>200]);
+            	\Session::flash('flash_sucess', 'add_sucess');
+				return redirect()->route('admin.b_trimestrals.attachments.index', $parent_id);
+			} else
+				return view('admin.a_trimestrals.add', ['parent_page' => Atrimestral::find($parent_id), 'attachments' => $request]);
 		/*
 		if (!empty($request) && ($request = Atrimestral::create($request)) ) {
 			\Session::flash('flash_sucess', 'add_sucess');
@@ -116,13 +124,18 @@ class A_trimestralsController extends Controller
 
 	public function destroy($parent_id, $id)
 	{
-		if (empty($attachment = Atrimestral::find($id))) {
+		$data = Atrimestral::find($id);
+		$arquivo = $this->path.$parent_id.'/'.$data['file_file_name'];
+		//dd( file_exists($arquivo) );
+		if (!file_exists($arquivo)) {
 			\Session::flash('flash_danger', 'invalid_record');
+			$del = Atrimestral::where('id',$id)->delete();
 			return redirect()->route('admin.b_trimestrals.attachments.index', $parent_id);
 		}
-
-		if($attachment->delete()) {
+			
+		if(File::delete($arquivo)) {
 			\Session::flash('flash_sucess', 'record_deleted');
+			$del = Atrimestral::where('id',$id)->delete();
 			return redirect()->route('admin.b_trimestrals.attachments.index', $parent_id);
 		}
 		else{
