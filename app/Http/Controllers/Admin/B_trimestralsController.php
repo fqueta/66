@@ -60,7 +60,14 @@ class B_trimestralsController extends AdminController
     public function store(BtrimestralsRequest $request)
     {
         $items = $request->except(['notification_check', 'opening']);
-        $items['opening'] = Carbon::createFromFormat('d/m/Y H:i', $request->get('opening'));
+        $op = explode( ' ', $request->get('opening'));
+        if(!isset($op[1])){
+            $opn = $request->get('opening').' '.date('H:i');
+        }else{
+            $opn = $request->get('opening');
+        }
+            
+        $items['opening'] = Carbon::createFromFormat('d/m/Y H:i', $opn);
         //dd($items);
         if($bidding = Btrimestral::create($items)){
             //$receivers = Newsletter::where('bidding_category_id', $items['bidding_category_id'])->get()->lists('email')->toArray();

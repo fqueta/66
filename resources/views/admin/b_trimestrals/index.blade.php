@@ -58,6 +58,7 @@
         <thead>
           <tr>
             <th>Título</th>
+            <th>Data</th>
             <th style="width: 95px;">Publicado</th>
             <!--
             <th>Categoria</th>
@@ -73,6 +74,7 @@
           @foreach($biddings as $bidding)
             <tr id="featured_enterprises_{!! $bidding->id !!}">
               <td><a href="{!! route('admin.b_trimestrals.edit', $bidding->id) !!}">{!!$bidding->title!!}</a></td>
+              <td>{!! $bidding->opening !!}</td>
               <td>{!! $bidding->active ? '<p class="ls-tag-success">Sim</p>' : '<p class="ls-tag-danger">Não</p>' !!}</td>
               <td class="ls-txt-right ls-regroup">
                 <div class="ls-dropdown ls-pos-right" data-ls-module="dropdown">

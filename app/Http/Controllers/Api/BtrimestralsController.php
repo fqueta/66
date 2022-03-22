@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -19,11 +19,16 @@ class BtrimestralsController extends Controller
     {
         $limit = false;
         $page = 0;
+        if($request->has('ano') && trim($request->get('ano')) !== ""){
+            $anoFiltro = $request->get('ano');
+        }else{
+            $anoFiltro = date('Y');
+        }
         if($request->has('title') && trim($request->get('title')) !== ""){
-            $biddings = Btrimestral::where('title', 'LIKE', '%'.$request->get("title").'%')->orderBy('opening', 'DESC');
+            $biddings = Btrimestral::where('title', 'LIKE', '%'.$request->get("title").'%')->whereYear('opening','=',$anoFiltro)->orderBy('opening', 'DESC');
             $biddings = $biddings->orWhere('object', 'LIKE', '%'.$request->get("title").'%');
         }else{
-            $biddings = Btrimestral::orderBy('opening', 'DESC');
+            $biddings = Btrimestral::orderBy('opening', 'DESC')->whereYear('opening','=',$anoFiltro);
         }
         if($request->has('genre') && trim($request->get('genre')) !== "")
             $biddings = $biddings->where(['genre_id' => $request->get('genre')]);
@@ -57,7 +62,16 @@ class BtrimestralsController extends Controller
             ->with('category')
             ->with('attachments')
             ->get();
-
-        return [ "amount" => $count, 'biddings' => $biddings, 'phases' => $phases, 'genres' => $genres, 'bidding_categories' => $bidding_categories];
+        // $biddings = $biddings->where(['active' => 1])
+        //     ->orderBy('opening', 'desc')
+        //     ->select(['id', 'title', 'opening', 'indentifier', 'object', 'genre_id', 'phase_id', 'bidding_category_id', 'created_at'])
+        //     ->with('genre')
+        //     ->with('phase')
+        //     ->with('category')
+        //     ->with('attachments')
+        //     ->get();
+        $anos = Btrimestral::select(DB::raw('YEAR(opening) as ano'))->distinct()->orderBy('opening', 'desc')->get();
+        
+        return [ "amount" => $count, 'btrimestrals' => $biddings, 'anos' => $anos, 'phases' => $phases, 'genres' => $genres, 'bidding_categories' => $bidding_categories];
     }
 }

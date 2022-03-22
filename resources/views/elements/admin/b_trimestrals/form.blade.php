@@ -65,7 +65,7 @@
 			<label class="ls-label col-md-2">
 				<b class="ls-label-text">Data de abertura</b>
 				{!!Form::text('opening', old('opening'), ['placeholder' => 'Data de abertura', 'id' => "datepicker-input"])!!}
-				<small>Exemplo: 20/03/2018 12:30</small>
+				<small>Exemplo: 20/03/{{date('Y')}}</small>
 			</label>
 		</fieldset>
 		<fieldset>
